@@ -3,12 +3,13 @@ using System.Collections;
 
 public class ShipController : MonoBehaviour {
 
-	private Renderer renderer; 
 	private Vector3 position;
+	private LasersController lasers;
 
 	// Use this for initialization
 	void Start () {
-
+		GameObject laser = GameObject.Find ("Lasers"); 
+		this.lasers = laser.GetComponent<LasersController>(); 
 		this.position = this.transform.position;
 	}
 	
@@ -20,6 +21,9 @@ public class ShipController : MonoBehaviour {
 		} else if (Input.GetKey (KeyCode.S)) {
 			position.z -= 1;
 			this.transform.position = position;
+		}
+		if (Input.GetKey (KeyCode.Space)) {
+			this.lasers.shotLasers();
 		}
 
 	}

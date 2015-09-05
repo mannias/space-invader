@@ -4,28 +4,34 @@ using System.Collections;
 public class LaserControl : MonoBehaviour {
 
 	private bool isShowingLaser = false;
-	private Renderer renderer;
+	private Renderer render;
 
 	void Start() {
-		this.renderer = this.gameObject.GetComponent<Renderer> ();
+		this.render = this.gameObject.GetComponent<Renderer> ();
+		this.render.enabled = false;
 	}
 
 
-	void showLaser()
+	public IEnumerator showLaser()
 	{
-//		if( isShowingLaser ) return;
-//		isShowingLaser = true;
-//		this.renderer.enabled = true;
-//		
-//		yield return new WaitForSeconds(.05);
-//
-//		resetLaser();
-//		isShowingLaser = false;
+
+		if (isShowingLaser) {
+			return true;
+		}
+		isShowingLaser = true;
+		this.render.enabled = true;
+
+		yield return new WaitForSeconds(.05f);
+
+		resetLaser();
+
+
 	}
 
 	void resetLaser()
 	{    
-		this.renderer.enabled = false;
+		this.render.enabled = false;
+		isShowingLaser = false;
 	}
 
 }
