@@ -3,35 +3,19 @@ using System.Collections;
 
 public class LaserControl : MonoBehaviour {
 
-	private bool isShowingLaser = false;
-	private Renderer render;
+	private ParticleEmitter emitter;
+	private bool emitting = false;
 
 	void Start() {
-		this.render = this.gameObject.GetComponent<Renderer> ();
-		this.render.enabled = false;
+		this.emitter = this.GetComponent<ParticleEmitter> ();
+		this.emitter.Emit (0);
 	}
 
 
-	public IEnumerator showLaser()
+	public void showLaser()
 	{
-
-		if (isShowingLaser) {
-			return true;
-		}
-		isShowingLaser = true;
-		this.render.enabled = true;
-
-		yield return new WaitForSeconds(.05f);
-
-		resetLaser();
-
+		this.emitter.Emit (1);
+		this.emitting = true;
 
 	}
-
-	void resetLaser()
-	{    
-		this.render.enabled = false;
-		isShowingLaser = false;
-	}
-
 }

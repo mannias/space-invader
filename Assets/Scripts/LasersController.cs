@@ -20,7 +20,7 @@ public class LasersController : MonoBehaviour {
 
 	public void shotLasers(){
 		foreach(LaserControl laser in laserList){
-			StartCoroutine(laser.showLaser());
+			laser.showLaser();
 		}
 	}
 
