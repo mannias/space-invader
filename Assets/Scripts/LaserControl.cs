@@ -13,13 +13,14 @@ public class LaserControl : MonoBehaviour {
 
 	void showLaser()
 	{
-		if( isShowingLaser ) return;
-		isShowingLaser = true;
-		this.renderer.enabled = true;
-		
-		yield return new WaitForSeconds(.05);
-		resetLaser();
-		isShowingLaser = false;
+//		if( isShowingLaser ) return;
+//		isShowingLaser = true;
+//		this.renderer.enabled = true;
+//		
+//		yield return new WaitForSeconds(.05);
+//
+//		resetLaser();
+//		isShowingLaser = false;
 	}
 
 	void resetLaser()
