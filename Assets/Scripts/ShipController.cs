@@ -14,9 +14,13 @@ public class ShipController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKey(KeyCode.W)){
+		if (Input.GetKey (KeyCode.W)) {
 			position.z += 1;
 			this.transform.position = position;
+		} else if (Input.GetKey (KeyCode.S)) {
+			position.z -= 1;
+			this.transform.position = position;
 		}
+
 	}
 }
