@@ -13,4 +13,9 @@ public class EnemyController : MonoBehaviour {
 	void FixedUpdate () {
 		rb.AddForce (transform.forward * force);
 	}
+
+	void OnParticleCollision(GameObject go){
+		PoolGameObject pooledObject = this.gameObject.GetComponent<PoolGameObject> ();
+		pooledObject.Return ();
+	}
 }
