@@ -6,12 +6,10 @@ public class EnemyShooting : MonoBehaviour {
 	Pool enemyPool;
 	public GameObject enemyPrefab;
 	public float timeShooting;
-	public float numberOfShootings;
+//	public float numberOfShootings;
 	public float numberOfEnemys;
 	CounterTimer timer;
 	int countfired;
-	public float forceMultiplier;
-	public Vector3 startPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +17,7 @@ public class EnemyShooting : MonoBehaviour {
 		enemyPool = this.GetComponent<Pool> ();
 		timer = new CounterTimer (timeShooting);
 		enemyPool.Initialize (enemyPrefab, 5);
-		enemyPool.gameObject.transform.position=startPosition;
+		enemyPool.gameObject.transform.position=this.gameObject.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -27,7 +25,7 @@ public class EnemyShooting : MonoBehaviour {
 		timer.Update (Time.deltaTime);
 		if (timer.Finished && countfired<numberOfEnemys) {
 			PoolGameObject enemy = enemyPool.Retrieve();
-			enemy.gameObject.transform.position = this.transform.position;
+			enemy.gameObject.transform.position = this.gameObject.transform.position;
 			timer.Reset();
 			countfired++;
 		}

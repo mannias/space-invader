@@ -11,7 +11,7 @@ public class Pool : MonoBehaviour
 		if(!prefab)
 			Debug.LogError("Could not find prefab", this);
 		
-		this.transform.position = Vector3.zero;
+		//this.transform.position = Vector3.zero;
 		this.transform.rotation = Quaternion.identity;
 		this.transform.localScale = Vector3.one;
 

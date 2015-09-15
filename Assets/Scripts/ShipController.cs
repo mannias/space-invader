@@ -30,13 +30,15 @@ public class ShipController : MonoBehaviour {
 		} else if (Input.GetAxis ("Vertical") < 0) {
 			rb.AddForce (transform.up * -50);	
 		} else {
-			rb.velocity=new Vector3(0,0,0);
+			rb.velocity=Vector3.zero;
 		}
 		if (Input.GetKey (KeyCode.Space)) {
 			this.lasers.shotLasers();
 		}
 	}
 
-
-
+	void onCollision(){
+		//game over or 1 less life
+		rb.velocity = Vector3.zero;
+	}
 }
