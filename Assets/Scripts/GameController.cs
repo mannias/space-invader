@@ -7,14 +7,20 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviorSingleton<GameController> {
 
 	public enum TypeOfEnemy {Asteroid, SimpleSpaceShip}; 
-	
+	enum Lifes {life1, life2, life3};
 	int score;
 	public Text scoreText;
 	public Image life1;
 	public Image life2;
 	public Image life3;
+	int scoreAsteroid;
+	int scoreSimpleSpaceShip;
+	int activeLife;
 
 	void Start () {
+		scoreAsteroid = 10;
+		scoreSimpleSpaceShip = 30;
+		activeLife = 0;
 		score = 0;
 		UpdateScore ();
 		life1.gameObject.SetActive (true);
@@ -24,15 +30,31 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 
 	public void AddScore(TypeOfEnemy enemy){
 		if (enemy == TypeOfEnemy.Asteroid) {
-			score += 10;
+			score += scoreAsteroid;
 		} else if (enemy == TypeOfEnemy.SimpleSpaceShip) {
-			score+=30;
+			score+=scoreSimpleSpaceShip;
 		}
 		UpdateScore ();
 	}
 	
 	void UpdateScore () {
 		scoreText.text = "Score: " + score;
+
+	}
+
+	public void OneLessLife(){
+		if (activeLife == (int)Lifes.life1) {
+			life1.gameObject.SetActive (false);
+		} else if (activeLife == (int)Lifes.life2) {
+			life2.gameObject.SetActive (false);
+		} else if (activeLife == (int)Lifes.life3) {
+			life3.gameObject.SetActive(false);
+			GameOver();
+		}
+		activeLife += 1;
+	}
+
+	void GameOver(){
 
 	}
 

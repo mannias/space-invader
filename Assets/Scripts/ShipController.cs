@@ -6,9 +6,12 @@ public class ShipController : MonoBehaviour {
 	private Vector3 position;
 	private LasersController lasers;
 	private Rigidbody rb;
+	GameController gameController;
 
 	// Use this for initialization
 	void Start () {
+		GameObject controllerObject = GameObject.FindGameObjectWithTag ("GameController");
+		gameController = controllerObject.GetComponent<GameController> ();
 		GameObject laser = GameObject.Find ("Lasers"); 
 		this.lasers = laser.GetComponent<LasersController>(); 
 		this.position = this.transform.position;
@@ -37,8 +40,9 @@ public class ShipController : MonoBehaviour {
 		}
 	}
 
-	void onCollision(){
+	void OnCollisionEnter(){
 		//game over or 1 less life
-		rb.velocity = Vector3.zero;
+		gameController.OneLessLife ();
+
 	}
 }
