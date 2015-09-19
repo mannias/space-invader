@@ -8,6 +8,7 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	enum Lifes {life1, life2, life3};
 	int score;
 	public Text scoreText;
+	public Text centralText;
 	public Image life1;
 	public Image life2;
 	public Image life3;
@@ -67,19 +68,20 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	}
 
 	void GameOver(){
-
+		centralText.gameObject.SetActive (true);
+		Pause ();
+		centralText.text = "Game Over";
 	}
 
 	IEnumerator Countdown()
 	{
-		//centralText.text = "3";
+		centralText.gameObject.SetActive (true);
+		centralText.text = "3";
 		yield return new WaitForSeconds(1);
-		//centralText.text = "2";
+		centralText.text = "2";
 		yield return new WaitForSeconds(1);
-		//centralText.text = "1";
+		centralText.text = "1";
 		yield return new WaitForSeconds(1);
-		//centralText.text = "Go!!!";
-		yield return new WaitForSeconds(1);
-		//centralText.text = "";
+		centralText.text = "";
 	}
 }
