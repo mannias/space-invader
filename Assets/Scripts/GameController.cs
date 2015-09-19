@@ -5,26 +5,21 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviorSingleton<GameController> {
 
 	public enum TypeOfEnemy {Asteroid, SimpleSpaceShip}; 
-	enum Lifes {life1, life2, life3};
 	int score;
-	public Text scoreText;
-	public Text centralText;
-	public Image life1;
-	public Image life2;
-	public Image life3;
 	int scoreAsteroid;
 	int scoreSimpleSpaceShip;
 	int activeLife;
+	int maxLives = 3;
+	UIController uiController;
 
 	void Start () {
 		scoreAsteroid = 10;
 		scoreSimpleSpaceShip = 30;
 		activeLife = 0;
 		score = 0;
-		UpdateScore ();
-		life1.gameObject.SetActive (true);
-		life2.gameObject.SetActive (true);
-		life3.gameObject.SetActive (true);
+		GameObject uiControllerObject = GameObject.FindGameObjectWithTag ("UIController");
+		uiController = uiControllerObject.GetComponent<UIController> ();
+		uiController.UpdateScore (score);
 	}
 
 	void Update(){
@@ -33,12 +28,13 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 		}
 	}
 
-
 	public void Pause(){
 		if (Time.timeScale==1) {
 			Time.timeScale = 0;
+			uiController.PauseMenu(true);
 		} else {
 			Time.timeScale =1;
+			uiController.PauseMenu(false);
 		}
 	}
 
@@ -48,40 +44,20 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 		} else if (enemy == TypeOfEnemy.SimpleSpaceShip) {
 			score+=scoreSimpleSpaceShip;
 		}
-		UpdateScore ();
-	}
-	
-	void UpdateScore () {
-		scoreText.text = "Score: " + score;
-	}
+		uiController.UpdateScore (score);
+	}	
 
 	public void OneLessLife(){
-		if (activeLife == (int)Lifes.life1) {
-			life1.gameObject.SetActive (false);
-		} else if (activeLife == (int)Lifes.life2) {
-			life2.gameObject.SetActive (false);
-		} else if (activeLife == (int)Lifes.life3) {
-			life3.gameObject.SetActive(false);
-			GameOver();
-		}
+		uiController.RemoveLifeImage(activeLife);
 		activeLife += 1;
+		if (activeLife == maxLives) {
+			GameOver ();
+		}
 	}
 
 	void GameOver(){
-		centralText.gameObject.SetActive (true);
-		Pause ();
-		centralText.text = "Game Over";
+		Time.timeScale = 0;
+		uiController.GameOver ();
 	}
 
-	IEnumerator Countdown()
-	{
-		centralText.gameObject.SetActive (true);
-		centralText.text = "3";
-		yield return new WaitForSeconds(1);
-		centralText.text = "2";
-		yield return new WaitForSeconds(1);
-		centralText.text = "1";
-		yield return new WaitForSeconds(1);
-		centralText.text = "";
-	}
 }
