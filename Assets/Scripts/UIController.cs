@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour {
 	public enum Lives {life1, life2, life3};
 	GameController gameController;
 	public GameObject pausePanel;
+	public GameObject gameOverPanel;
 	public Text scoreText;
 	public Text centralText;
 	public Image life1;
@@ -51,12 +52,17 @@ public class UIController : MonoBehaviour {
 
 	public void GameOver(){
 		centralText.gameObject.SetActive (true);
+		gameOverPanel.gameObject.SetActive (true);
 		centralText.text = "Game Over";
 		Time.timeScale = 0;
 	}
 
 	public void onClickMainMenu(){
 		Application.LoadLevel ("MainMenuScene");
+	}
+
+	public void onClickPlayAgain(){
+		Application.LoadLevel (1); //TODO: change when we have levels
 	}
 
 	public void Quit(){
