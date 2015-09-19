@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ShipController : MonoBehaviour {
@@ -18,11 +18,6 @@ public class ShipController : MonoBehaviour {
 		rb = this.GetComponent<Rigidbody>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-	}
-
 	void FixedUpdate(){
 		if (Input.GetAxis ("Horizontal") > 0) {
 			rb.AddForce (transform.right * 50);
@@ -41,10 +36,6 @@ public class ShipController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision c){
-		if(c.gameObject.tag == "hasCollide"){
-			//nothing
-		}else{
-			gameController.OneLessLife ();
-		}
+		gameController.OneLessLife ();
 	}
 }

@@ -7,13 +7,15 @@ public class EnemyController : MonoBehaviour {
 	public float force;
 	public GameController.TypeOfEnemy type;
 	bool hasCollisioned;
+	Vector3 oldVelocity;
+	bool isPaused;
 		
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
 	}
 		
-	void FixedUpdate () {
-		rb.AddForce (transform.forward * force);
+	void FixedUpdate () {	
+			rb.AddForce (transform.forward * force);
 	}
 
 	void OnParticleCollision(GameObject go){

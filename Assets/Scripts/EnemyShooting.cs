@@ -23,10 +23,10 @@ public class EnemyShooting : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timer.Update (Time.deltaTime);
-		if (timer.Finished && countfired<numberOfEnemys) {
-			PoolGameObject enemy = enemyPool.Retrieve();
+		if (timer.Finished && countfired < numberOfEnemys) {
+			PoolGameObject enemy = enemyPool.Retrieve ();
 			enemy.gameObject.transform.position = this.gameObject.transform.position;
-			timer.Reset();
+			timer.Reset ();
 			countfired++;
 		}
 	}
