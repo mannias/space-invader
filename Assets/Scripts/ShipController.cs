@@ -28,7 +28,7 @@ public class ShipController : MonoBehaviour {
 		} else if (Input.GetAxis ("Vertical") < 0) {
 			rb.AddForce (transform.up * -50);	
 		} else {
-			rb.velocity=Vector3.zero;
+//			rb.velocity=Vector3.zero;
 		}
 		if (Input.GetKey (KeyCode.Space)) {
 			this.lasers.shotLasers();
