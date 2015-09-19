@@ -47,9 +47,20 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\CameraDirector.cs" />
+     <Compile Include="Assets\Scripts\CounterTimer.cs" />
+     <Compile Include="Assets\Scripts\EnemyController.cs" />
+     <Compile Include="Assets\Scripts\EnemyShooting.cs" />
+     <Compile Include="Assets\Scripts\GlobalVariables.cs" />
      <Compile Include="Assets\Scripts\LaserControl.cs" />
      <Compile Include="Assets\Scripts\LasersController.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\MonoBehaviorSingleton.cs" />
+     <Compile Include="Assets\Scripts\Pool\ExtendablePool.cs" />
+     <Compile Include="Assets\Scripts\Pool\Pool.cs" />
+     <Compile Include="Assets\Scripts\Pool\PoolGameObject.cs" />
+     <Compile Include="Assets\Scripts\Pool\PoolManager.cs" />
+     <Compile Include="Assets\Scripts\Pool\PoolableParticles.cs" />
      <Compile Include="Assets\Scripts\ShipController.cs" />
      <None Include="Assets\Fonts\Orbitron\OFL.txt" />
      <None Include="Assets\Fonts\Nova_Square\OFL.txt" />
