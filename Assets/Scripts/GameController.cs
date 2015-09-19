@@ -2,16 +2,24 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public enum TypeOfEnemy {Asteroid, SimpleSpaceShip}; 
+
 
 public class GameController : MonoBehaviorSingleton<GameController> {
 
+	public enum TypeOfEnemy {Asteroid, SimpleSpaceShip}; 
+	
 	int score;
 	public Text scoreText;
+	public Image life1;
+	public Image life2;
+	public Image life3;
 
 	void Start () {
 		score = 0;
 		UpdateScore ();
+		life1.gameObject.SetActive (true);
+		life2.gameObject.SetActive (true);
+		life3.gameObject.SetActive (true);
 	}
 
 	public void AddScore(TypeOfEnemy enemy){
