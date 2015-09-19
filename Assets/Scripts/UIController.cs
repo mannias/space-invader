@@ -52,10 +52,15 @@ public class UIController : MonoBehaviour {
 	public void GameOver(){
 		centralText.gameObject.SetActive (true);
 		centralText.text = "Game Over";
+		Time.timeScale = 0;
 	}
 
 	public void onClickMainMenu(){
-//		Application.LoadLevel (level);
+		Application.LoadLevel ("MainMenuScene");
 	}
 
+	public void Quit(){
+		Application.Quit ();
+	}
+	
 }

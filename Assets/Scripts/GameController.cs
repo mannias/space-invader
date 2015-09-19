@@ -56,8 +56,8 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	}
 
 	void GameOver(){
-		Time.timeScale = 0;
 		uiController.GameOver ();
+		Time.timeScale = 0;
 	}
 
 }
