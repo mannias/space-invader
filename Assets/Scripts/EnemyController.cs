@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour {
 	Rigidbody rb;
 	public float force;
 	public GameController.TypeOfEnemy type;
+	bool hasCollisioned;
 		
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
@@ -21,5 +22,9 @@ public class EnemyController : MonoBehaviour {
 		GameObject controllerObject = GameObject.FindGameObjectWithTag ("GameController");
 		GameController gameController = controllerObject.GetComponent<GameController> ();
 		gameController.AddScore (type);
+	}
+
+	void OnCollisionEnter(){
+		gameObject.layer = LayerMask.NameToLayer ("hadCollide");
 	}
 }

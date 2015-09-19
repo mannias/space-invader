@@ -40,9 +40,11 @@ public class ShipController : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(){
-		//game over or 1 less life
-		gameController.OneLessLife ();
-
+	void OnCollisionEnter(Collision c){
+		if(c.gameObject.tag == "hasCollide"){
+			//nothing
+		}else{
+			gameController.OneLessLife ();
+		}
 	}
 }

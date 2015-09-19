@@ -39,7 +39,6 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	
 	void UpdateScore () {
 		scoreText.text = "Score: " + score;
-
 	}
 
 	public void OneLessLife(){
