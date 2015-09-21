@@ -6,16 +6,24 @@ public class EnemyController : MonoBehaviour {
 	Rigidbody rb;
 	public float force;
 		
-	void Start () {
-		rb = this.GetComponent<Rigidbody>();
-	}
-		
-	void FixedUpdate () {
-		rb.AddForce (transform.forward * force);
+	void OnParticleCollision(GameObject go) {
+		this.Destroy();
 	}
 
-	void OnParticleCollision(GameObject go){
-		PoolGameObject pooledObject = this.gameObject.GetComponent<PoolGameObject> ();
-		pooledObject.Return ();
+	void OnEnable() {
+		rb = this.GetComponent<Rigidbody>();
+		rb.AddForce (transform.forward * force, ForceMode.Impulse);
+	}
+
+	void Destroy() {
+		this.gameObject.SetActive(false);
+	}
+
+	void OnDisable() {
+		CancelInvoke();
+	}
+
+	void OnBecameInvisible() {
+		this.Destroy();
 	}
 }
