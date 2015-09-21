@@ -10,15 +10,13 @@ public class EnemyPoolManager : MonoBehaviour {
 	public float fireProbability = 0.4f;
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("Starting Manager");
 		InvokeRepeating("FireEnemy", startTime, repeatingTime);	
 	}
 	
 	void FireEnemy() {
-		Debug.Log ("Starting Firing Round");
-		foreach (EnemyPool ep in pools) {			
+		foreach (EnemyPool ep in pools) {	
+
 			if (ep.HasEnemiesInPool() && Random.value <= fireProbability) {
-				Debug.Log ("Fire!");
 				ep.FireEnemy();
 			}
 		}

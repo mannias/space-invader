@@ -17,10 +17,8 @@ public class EnemyPool : MonoBehaviour {
 	}
 	
 	public void FireEnemy() {
-		Debug.Log ("Attempting Fire!");
 		foreach (GameObject go in enemies) {
 			if (!go.activeInHierarchy) {
-				Debug.Log ("Fire in the hole!");
 				go.transform.position = this.transform.position;
 				go.transform.rotation = this.transform.rotation;
 				go.SetActive(true);

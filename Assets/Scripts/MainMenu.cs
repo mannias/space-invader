@@ -10,9 +10,6 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		//QuitMenu = QuitMenu.GetComponent<Canvas> ();
-		//StartBtn = StartBtn.GetComponent<Button> ();
-		//ExitBtn = ExitBtn.GetComponent<Button> ();
 		RestoreMainMenu();
 	}
 
@@ -37,6 +34,6 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void OnStartPress() {
-		Application.LoadLevel (1);
+		Application.LoadLevel(1);
 	}
 }
