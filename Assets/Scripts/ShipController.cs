@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ShipController : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class ShipController : MonoBehaviour {
 	private float zAnMax = 20.0f;
 	private float zAnMin = -20.0f;
 	private float speedRot = 5.0f;
+	private HashSet<GameObject> collissions = new HashSet<GameObject>();
 
 	// Use this for initialization
 	void Start() {
@@ -24,6 +26,11 @@ public class ShipController : MonoBehaviour {
 
 	}
 
+	void OnCollisionEnter (Collision col){
+
+	}
+
+		
 	void FixedUpdate(){
 		if (Input.GetAxis ("Horizontal") > 0) {
 			rb.AddForce (transform.right * 50);
