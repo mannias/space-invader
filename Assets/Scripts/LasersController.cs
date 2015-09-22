@@ -24,4 +24,18 @@ public class LasersController : MonoBehaviour {
 		}
 	}
 
+	public void StopLasers() {
+		foreach (LaserControl lc in laserList) {
+			lc.HideLaser();
+		}
+	}
+
+	public bool IsEmitting() {
+		foreach (LaserControl lc in laserList) {
+			if (!lc.IsEmitting()) {
+				return false;
+			}
+		}
+		return true; 
+	}
 }

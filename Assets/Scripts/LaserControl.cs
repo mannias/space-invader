@@ -11,11 +11,17 @@ public class LaserControl : MonoBehaviour {
 		this.emitter.Emit (0);
 	}
 
-
-	public void showLaser()
-	{
+	public void showLaser() {
 		this.emitter.Emit (1);
 		this.emitting = true;
+	}
 
+	public bool IsEmitting() {
+		return emitting;
+	}
+
+	public void HideLaser() {
+		this.emitter.Emit (0);
+		this.emitting = false;
 	}
 }
