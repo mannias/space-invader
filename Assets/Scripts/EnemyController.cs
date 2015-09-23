@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyController : MonoBehaviour {
 		
 	Rigidbody rb;
+	public Detonator detonator;
 	public float force;
 	public GameController.TypeOfEnemy type;
 
@@ -20,6 +21,10 @@ public class EnemyController : MonoBehaviour {
 		this.Destroy();
 	}
 
+	void OnMouseDown() {
+		this.Destroy ();
+	}
+
 	void OnEnable() {
 		rb = this.GetComponent<Rigidbody>();
 		rb.AddForce (transform.forward * force, ForceMode.Impulse);
@@ -27,6 +32,10 @@ public class EnemyController : MonoBehaviour {
 
 	void Destroy() {
 		this.gameObject.SetActive(false);
+		if (detonator != null) {
+			detonator.transform.position = this.transform.position;
+			detonator.Explode();
+		}
 	}
 
 	void OnDisable() {
@@ -34,7 +43,7 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	void OnBecameInvisible() {
-		this.Destroy();
+		this.gameObject.SetActive (false);
 	}
 
 	//For asteroids that collide twice

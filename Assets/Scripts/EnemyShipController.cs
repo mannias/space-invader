@@ -3,24 +3,25 @@ using System.Collections;
 
 public class EnemyShipController : EnemyController {
 
-	public LasersController lasers;
+	public EnemyPool bulletsPool;
 	public GameObject target;
 	public float targetRefresh;
 
 	public Vector3 targetPosition;
+	private bool firstRun = true;
 	// Use this for initialization
 	void Start () {
-		GameObject laser = GameObject.Find ("Lasers"); 
-		this.lasers = laser.GetComponent<LasersController>(); 
-		InvokeRepeating ("Lasers", 0, targetRefresh);
+		this.bulletsPool = Instantiate (bulletsPool);
+		InvokeRepeating ("Shoot", 0, targetRefresh);
 	}
 
-	void Lasers() {
-		if (lasers.IsEmitting ()) {
-			lasers.StopLasers ();
-		} else {
-			lasers.transform.LookAt(targetPosition);
-			lasers.shotLasers();
+	void Shoot() {
+		Debug.Log ("Shoot!");
+		if (!firstRun) {
+			Debug.Log("Shooting at: " + targetPosition.ToString());
+			firstRun = false;
+			bulletsPool.transform.LookAt(targetPosition);
+			bulletsPool.FireEnemy ();
 		}
 		targetPosition = new Vector3(target.transform.position.x, 
 		                             target.transform.position.y, 
