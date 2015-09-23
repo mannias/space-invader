@@ -12,9 +12,12 @@ public class ShipController : MonoBehaviour {
 	private float zAnMin = -20.0f;
 	private float speedRot = 5.0f;
 	private HashSet<GameObject> collissions = new HashSet<GameObject>();
+	GameController gameController;
 
 	// Use this for initialization
 	void Start() {
+		GameObject controllerObject = GameObject.FindGameObjectWithTag ("GameController");
+		gameController = controllerObject.GetComponent<GameController> ();
 		GameObject laser = GameObject.Find ("Lasers"); 
 		this.lasers = laser.GetComponent<LasersController>(); 
 		this.position = this.transform.position;
@@ -26,8 +29,8 @@ public class ShipController : MonoBehaviour {
 
 	}
 
-	void OnCollisionEnter (Collision col){
-
+	void OnCollisionEnter(Collision c){
+		gameController.OneLessLife ();
 	}
 
 		
@@ -65,8 +68,4 @@ public class ShipController : MonoBehaviour {
 		}
 	}
 
-	void onCollision(){
-		//game over or 1 less life
-		rb.velocity = Vector3.zero;
-	}
 }
