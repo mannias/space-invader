@@ -4,7 +4,6 @@ using System.Collections;
 public class EnemyShipController : EnemyController {
 
 	public GameObject target;
-	public AudioClip shotClip;
 	public float targetRefresh = 0.25f;
 	public float flashIntensity = 3f;
 	public float fadeSpeed = 10f;
@@ -26,6 +25,12 @@ public class EnemyShipController : EnemyController {
 		InvokeRepeating ("PullingTrigger", 0, targetRefresh);
 	}
 
+	void Update() {
+		if (shooting) {
+			laserShotLight.intensity = Mathf.Lerp (laserShotLight.intensity, 0f, fadeSpeed * Time.deltaTime);
+		}
+	}
+
 	void PullingTrigger() {
 		Debug.Log ("Pulling Trigger");
 		if (!firstRun && !shooting) {
@@ -37,7 +42,6 @@ public class EnemyShipController : EnemyController {
 		}
 
 		firstRun = false;
-		laserShotLight.intensity = Mathf.Lerp (laserShotLight.intensity, 0f, fadeSpeed * Time.deltaTime);
 		targetPosition = target.transform;
 	}
 
@@ -48,6 +52,5 @@ public class EnemyShipController : EnemyController {
 		laserShotLine.SetPosition (1, targetPosition.position);
 		laserShotLine.enabled = true;
 		laserShotLight.intensity = flashIntensity;
-		//AudioSource.PlayClipAtPoint (shotClip, laserShotLight.transform.position);
 	}
 }

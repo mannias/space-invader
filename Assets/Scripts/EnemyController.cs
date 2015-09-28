@@ -4,14 +4,12 @@ using System.Collections;
 public class EnemyController : MonoBehaviour {
 		
 	Rigidbody rb;
-	public Detonator detonator;
 	public float force;
 	public GameController.TypeOfEnemy type;
 
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
 		rb.AddForce (transform.forward * force, ForceMode.Impulse);
-		detonator = Instantiate(detonator);
 	}
 		
 	void OnParticleCollision(GameObject go) {
@@ -31,10 +29,6 @@ public class EnemyController : MonoBehaviour {
 
 	void Destroy() {
 		this.gameObject.SetActive(false);
-		if (detonator != null) {
-			detonator.transform.position = this.transform.position;
-			detonator.Explode();
-		}
 	}
 
 	void OnDisable() {
