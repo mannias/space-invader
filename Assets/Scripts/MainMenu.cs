@@ -21,7 +21,9 @@ public class MainMenu : MonoBehaviour {
 		PlayMainMenuSound ();
 		QuitMenu.enabled = true;
 		StartBtn.enabled=false;
+		StartBtn.gameObject.SetActive(false);
 		ExitBtn.enabled = false;
+		ExitBtn.gameObject.SetActive(false);
 	}
 
 	public void OnExitNoPress() {
@@ -38,6 +40,8 @@ public class MainMenu : MonoBehaviour {
 		QuitMenu.enabled = false;
 		StartBtn.enabled = true;
 		ExitBtn.enabled = true;
+		StartBtn.gameObject.SetActive(true);
+		ExitBtn.gameObject.SetActive(true);
 	}
 
 	public void OnStartPress() {
