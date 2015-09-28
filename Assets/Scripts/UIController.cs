@@ -14,6 +14,11 @@ public class UIController : MonoBehaviour {
 	public Image life2;
 	public Image life3;
 	public Text pause;
+	private AudioSource source;	
+	
+	void Awake(){
+		source = this.GetComponent<AudioSource> ();
+	}
 
 	public void Start(){
 		GameObject controllerObject = GameObject.FindWithTag ("GameController");
@@ -24,16 +29,12 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void onClickPause(){	
+		source.Play ();
 		gameController.Pause ();
 	}
 
 	public void PauseMenu(bool show){
 		pausePanel.SetActive (show);
-//		if(show)
-//			pause.gameObject.SetActive (false);
-//		else
-//			pause.gameObject.SetActive (true);
-
 	}
 
 	public void RemoveLifeImage(int activeLife){
@@ -58,15 +59,28 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void onClickMainMenu(){
-		Application.LoadLevel ("MainMenuScene");
+		source.Play ();
+		StartCoroutine("WaitToLoadMainMenu");
 	}
 
 	public void onClickPlayAgain(){
-		Application.LoadLevel (1); //TODO: change when we have levels
+		source.Play ();
+		WaitToLoadLevelOne ();//TODO: change when we have levels
 	}
 
 	public void Quit(){
+		source.Play ();
 		Application.Quit ();
+	}
+
+	IEnumerator WaitToLoadMainMenu(){
+		yield return new WaitForSeconds(0.6f);
+		Application.LoadLevel(0);
+	}
+
+	IEnumerator WaitToLoadLevelOne(){
+		yield return new WaitForSeconds(0.6f);
+		Application.LoadLevel(1);
 	}
 	
 }

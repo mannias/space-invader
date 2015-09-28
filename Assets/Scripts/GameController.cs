@@ -11,6 +11,12 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	int activeLife;
 	int maxLives = 3;
 	UIController uiController;
+	public AudioClip gameOverSound;
+	private AudioSource source;	
+
+	void Awake(){
+		source = this.GetComponent<AudioSource> ();
+	}
 
 	void Start () {
 		scoreAsteroid = 10;
@@ -56,6 +62,7 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	}
 
 	void GameOver(){
+		source.PlayOneShot (gameOverSound);
 		uiController.GameOver ();
 		Time.timeScale = 0;
 	}

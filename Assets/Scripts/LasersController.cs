@@ -5,23 +5,27 @@ using System.Collections;
 public class LasersController : MonoBehaviour {
 
 	private List<LaserControl> laserList = new List<LaserControl>();
+	private AudioSource source;	
+	void Awake(){
+		source = this.GetComponent<AudioSource> ();
+	}
 
-	// Use this for initialization
 	void Start () {
 		for( int i = 0; i< this.transform.childCount; i++){
 			laserList.Add(this.transform.GetChild(i).gameObject.GetComponent<LaserControl>());
 		}
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}
 
 	public void shotLasers(){
 		foreach(LaserControl laser in laserList){
+			source.Play();
 			laser.showLaser();
 		}
+
 	}
 
 	public void StopLasers() {
@@ -38,4 +42,5 @@ public class LasersController : MonoBehaviour {
 		}
 		return true; 
 	}
+
 }
