@@ -13,6 +13,9 @@ public class ShipController : MonoBehaviour {
 	private float speedRot = 5.0f;
 	private HashSet<GameObject> collissions = new HashSet<GameObject>();
 	GameController gameController;
+	public float downTime, pressTime = 0;
+	public float countDown = 0.1f;
+	public bool ready = false;
 
 	// Use this for initialization
 	void Start() {
@@ -24,9 +27,23 @@ public class ShipController : MonoBehaviour {
 		rb = this.GetComponent<Rigidbody>();
 	}
 	
-	// Update is called once per frame
-	void Update() {
 
+	void Update() {
+//		if (Input.GetKeyDown (KeyCode.Space)) {
+//			this.lasers.PlayLaserSound(false);
+//		}
+//		if (Input.GetKeyDown (KeyCode.Space) && ready == false) {
+//			downTime = Time.time;
+//			pressTime = downTime + countDown;
+//			ready = true;
+//		} else if (Input.GetKeyUp (KeyCode.Space)) {
+//			ready = false;
+//		}
+//		if (Time.time >= pressTime && ready == true) {
+//			this.lasers.PlayLaserSound(true);
+//			ready = false;
+//			pressTime=0;
+//		}
 	}
 
 	void OnCollisionEnter(Collision c){
@@ -42,7 +59,7 @@ public class ShipController : MonoBehaviour {
 		} else {
 			rb.velocity=Vector3.zero;
 		}
-		if (Input.GetKey (KeyCode.Space)) {
+		if (Input.GetKey (KeyCode.Space)){
 			this.lasers.shotLasers();
 		}
 	}
