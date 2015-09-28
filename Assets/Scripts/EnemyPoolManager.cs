@@ -14,8 +14,7 @@ public class EnemyPoolManager : MonoBehaviour {
 	}
 	
 	void FireEnemy() {
-		foreach (EnemyPool ep in pools) {	
-
+		foreach (EnemyPool ep in pools) {
 			if (ep.HasEnemiesInPool() && Random.value <= fireProbability) {
 				ep.FireEnemy();
 			}

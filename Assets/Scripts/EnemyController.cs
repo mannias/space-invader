@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour {
 
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
+		rb.AddForce (transform.forward * force, ForceMode.Impulse);
+		detonator = Instantiate(detonator);
 	}
 		
 	void OnParticleCollision(GameObject go) {
@@ -25,10 +27,7 @@ public class EnemyController : MonoBehaviour {
 		this.Destroy ();
 	}
 
-	void OnEnable() {
-		rb = this.GetComponent<Rigidbody>();
-		rb.AddForce (transform.forward * force, ForceMode.Impulse);
-	}
+	void OnEnable() {/* Nothing so far */}
 
 	void Destroy() {
 		this.gameObject.SetActive(false);
