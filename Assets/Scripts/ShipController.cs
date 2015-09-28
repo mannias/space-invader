@@ -16,6 +16,8 @@ public class ShipController : MonoBehaviour {
 	public float downTime, pressTime = 0;
 	public float countDown = 0.1f;
 	public bool ready = false;
+	public Vector3 boxCenter;
+	public float bounds;
 
 	// Use this for initialization
 	void Start() {
@@ -25,6 +27,7 @@ public class ShipController : MonoBehaviour {
 		this.lasers = laser.GetComponent<LasersController>(); 
 		this.position = this.transform.position;
 		rb = this.GetComponent<Rigidbody>();
+		boxCenter = this.position;
 	}
 	
 
@@ -52,9 +55,9 @@ public class ShipController : MonoBehaviour {
 
 		
 	void FixedUpdate(){
-		if (Input.GetAxis ("Horizontal") > 0) {
+		if (Input.GetAxis ("Horizontal") > 0 && this.transform.position.x < bounds) {
 			rb.AddForce (transform.right * 50);
-		} else if (Input.GetAxis ("Horizontal") < 0) {
+		} else if (Input.GetAxis ("Horizontal") < 0 && this.transform.position.x > -bounds) {
 			rb.AddForce (transform.right * -50);
 		} else {
 			rb.velocity=Vector3.zero;
@@ -66,14 +69,14 @@ public class ShipController : MonoBehaviour {
 
 	void LateUpdate() {
 		this.transform.rotation = Quaternion.Euler (0, 0, 0); //default rotation
-		if (Input.GetKey ("left") || Input.GetKey ("a")) {
+		if ((Input.GetKey ("left") || Input.GetKey ("a")) && this.transform.position.x > -bounds) {
 			zAn = Mathf.Lerp (zAn, zAnMax, 1.0f * Time.deltaTime);
 			if (zAn > zAnMax) {
 				zAn = zAnMax;
 			}
 			this.transform.rotation = Quaternion.Euler (0, 0, zAn);
 		}
-		if (Input.GetKey ("right") || Input.GetKey ("d")) {
+		if ((Input.GetKey ("right") || Input.GetKey ("d")) && this.transform.position.x < bounds ) {
 			zAn = Mathf.Lerp (zAn, zAnMin, 1.0f * Time.deltaTime);
 			if (zAn < zAnMin) {
 				zAn = zAnMin;
