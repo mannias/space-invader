@@ -11,7 +11,6 @@ public class EnemyController : MonoBehaviour {
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
 		rb.AddForce (transform.forward * force, ForceMode.Impulse);
-		detonator = Instantiate(detonator);
 	}
 		
 	void OnParticleCollision(GameObject go) {
