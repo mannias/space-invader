@@ -7,23 +7,30 @@ public class MainMenu : MonoBehaviour {
 	public Canvas QuitMenu;
 	public Button StartBtn;
 	public Button ExitBtn;
+	private AudioSource source;
 
-	// Use this for initialization
+	void Awake(){
+		source = GetComponent<AudioSource> ();
+	}
+
 	void Start() {
 		RestoreMainMenu();
 	}
 
 	public void OnExitPress() {
+		PlayMainMenuSound ();
 		QuitMenu.enabled = true;
-		StartBtn.enabled = false;
+		StartBtn.enabled=false;
 		ExitBtn.enabled = false;
 	}
 
 	public void OnExitNoPress() {
+		PlayMainMenuSound ();
 		RestoreMainMenu ();
 	}
 
 	public void OnExitYesPress() {
+		PlayMainMenuSound ();
 		Application.Quit ();
 	}
 
@@ -34,6 +41,17 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void OnStartPress() {
+		PlayMainMenuSound ();
+		StartCoroutine("WaitToLoadLevel");
+	}
+
+	private void PlayMainMenuSound(){
+		source.Play();
+	}
+
+	IEnumerator WaitToLoadLevel(){
+		yield return new WaitForSeconds(0.6f);
 		Application.LoadLevel(1);
 	}
+
 }
