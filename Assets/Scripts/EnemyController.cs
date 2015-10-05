@@ -16,6 +16,10 @@ public class EnemyController : MonoBehaviour {
 		this.Destroy();
 	}
 
+	void OnCollisionEnter(Collision c) {
+		this.Destroy ();
+	}
+
 	void OnMouseDown() {
 		this.Destroy ();
 	}
