@@ -15,6 +15,7 @@ public class EnemyShipController : EnemyController {
 	private bool shooting;
 
 	void OnEnable() {
+		base.OnEnable();
 		laserShotLine = GetComponentInChildren<LineRenderer> ();
 		laserShotLight = laserShotLine.gameObject.GetComponent<Light>();
 		targetPosition = target.transform;

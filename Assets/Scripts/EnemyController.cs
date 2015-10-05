@@ -20,12 +20,11 @@ public class EnemyController : MonoBehaviour {
 		this.Destroy ();
 	}
 
-	void OnEnable() {
+	protected void OnEnable() {
 		if (!rb) {
 			rb = this.GetComponent<Rigidbody>();
 			rb.AddForce (transform.forward * force, ForceMode.Impulse);
 		}
-		Debug.Log (rb.velocity);
 		/* Nothing so far */
 	}
 
