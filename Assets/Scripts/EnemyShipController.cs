@@ -32,11 +32,9 @@ public class EnemyShipController : EnemyController {
 	}
 
 	void PullingTrigger() {
-		Debug.Log ("Pulling Trigger");
 		if (!firstRun && !shooting) {
 			Shoot();
 		} else {
-			Debug.Log("Releasing Trigger");
 			shooting = false;
 			laserShotLine.enabled = false;
 		}
@@ -46,7 +44,6 @@ public class EnemyShipController : EnemyController {
 	}
 
 	void Shoot() {
-		Debug.Log ("Shooting");
 		shooting = true;
 		laserShotLine.SetPosition (0, laserShotLine.transform.position);
 		laserShotLine.SetPosition (1, targetPosition.position);
