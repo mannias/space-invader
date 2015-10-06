@@ -4,9 +4,10 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-	public Canvas QuitMenu;
+	public Canvas InstructionPanel;
 	public Button StartBtn;
 	public Button ExitBtn;
+	public Button InstructionBtn;
 	private AudioSource source;
 
 	void Awake(){
@@ -19,7 +20,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void OnExitPress() {
 		PlayMainMenuSound ();
-		QuitMenu.enabled = true;
+		InstructionPanel.enabled = true;
 		StartBtn.enabled=false;
 		StartBtn.gameObject.SetActive(false);
 		ExitBtn.enabled = false;
@@ -37,7 +38,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void RestoreMainMenu() {
-		QuitMenu.enabled = false;
+		InstructionPanel.enabled = false;
 		StartBtn.enabled = true;
 		ExitBtn.enabled = true;
 		StartBtn.gameObject.SetActive(true);
@@ -46,7 +47,27 @@ public class MainMenu : MonoBehaviour {
 
 	public void OnStartPress() {
 		PlayMainMenuSound ();
-		StartCoroutine("WaitToLoadLevel");
+		Application.LoadLevel(1);
+		//StartCoroutine("WaitToLoadLevel");
+	}
+
+	public void OnInstructionPressed(){
+		PlayMainMenuSound ();
+		InstructionPanel.gameObject.SetActive (true);
+		InstructionPanel.enabled = true;
+		InstructionBtn.gameObject.SetActive (false);
+		StartBtn.gameObject.SetActive(false);
+		ExitBtn.gameObject.SetActive(false);
+
+	}
+
+	public void onClicBackInstructions(){
+		PlayMainMenuSound ();
+		InstructionPanel.gameObject.SetActive (false);
+
+		InstructionBtn.gameObject.SetActive (true);
+		StartBtn.gameObject.SetActive(true);
+		ExitBtn.gameObject.SetActive(true);
 	}
 
 	private void PlayMainMenuSound(){

@@ -66,12 +66,14 @@ public class UIController : MonoBehaviour {
 
 	public void onClickMainMenu(){
 		source.Play ();
-		StartCoroutine("WaitToLoadMainMenu");
+		Application.LoadLevel(0);
+		//StartCoroutine("WaitToLoadMainMenu");
 	}
 
 	public void onClickPlayAgain(){
 		source.Play ();
-		WaitToLoadLevelOne ();//TODO: change when we have levels
+		Application.LoadLevel(1);
+		//WaitToLoadLevelOne ();//TODO: change when we have levels
 	}
 
 	public void Quit(){
@@ -80,7 +82,7 @@ public class UIController : MonoBehaviour {
 	}
 
 	IEnumerator WaitToLoadMainMenu(){
-		yield return new WaitForSeconds(0.6f);
+		yield return new WaitForSeconds(1f);
 		Application.LoadLevel(0);
 	}
 
