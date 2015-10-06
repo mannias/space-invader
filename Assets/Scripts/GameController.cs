@@ -10,8 +10,11 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	int scoreSimpleSpaceShip;
 	int activeLife;
 	int maxLives = 3;
+	public int winnerScore = 100;
 	UIController uiController;
 	public AudioClip gameOverSound;
+	public AudioClip winningSound;
+	public AudioClip collision;
 	private AudioSource source;	
 
 	void Awake(){
@@ -31,6 +34,10 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	void Update(){
 		if (Input.GetKeyDown ("p")) {
 			Pause ();
+		}
+
+		if (score > winnerScore) {
+			Win ();
 		}
 	}
 
@@ -54,11 +61,18 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	}	
 
 	public void OneLessLife(){
+		source.PlayOneShot (collision);
 		uiController.RemoveLifeImage(activeLife);
 		activeLife += 1;
 		if (activeLife == maxLives) {
 			GameOver ();
 		}
+	}
+
+	void Win(){
+		source.PlayOneShot (winningSound);
+		uiController.Win ();
+		Time.timeScale = 0;
 	}
 
 	void GameOver(){

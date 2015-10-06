@@ -58,6 +58,12 @@ public class UIController : MonoBehaviour {
 		Time.timeScale = 0;
 	}
 
+	public void Win(){
+		centralText.gameObject.SetActive (true);
+		gameOverPanel.gameObject.SetActive (true);
+		centralText.text = "You win!";
+	}
+
 	public void onClickMainMenu(){
 		source.Play ();
 		StartCoroutine("WaitToLoadMainMenu");
