@@ -12,6 +12,7 @@ public class ShipController : MonoBehaviour {
 	private float zAnMin = -20.0f;
 	private float speedRot = 5.0f;
 	private HashSet<GameObject> collissions = new HashSet<GameObject>();
+	private const float MOVEMENT_FORCE = 50.0f;
 	GameController gameController;
 	public float downTime, pressTime = 0;
 	public float countDown = 0.1f;
@@ -56,9 +57,9 @@ public class ShipController : MonoBehaviour {
 		
 	void FixedUpdate(){
 		if (Input.GetAxis ("Horizontal") > 0 && this.transform.position.x < bounds) {
-			rb.AddForce (transform.right * 50);
+			rb.AddForce (transform.right * MOVEMENT_FORCE);
 		} else if (Input.GetAxis ("Horizontal") < 0 && this.transform.position.x > -bounds) {
-			rb.AddForce (transform.right * -50);
+			rb.AddForce (transform.right * - MOVEMENT_FORCE);
 		} else {
 			rb.velocity=Vector3.zero;
 		}
