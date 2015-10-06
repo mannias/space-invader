@@ -72,6 +72,7 @@ public class UIController : MonoBehaviour {
 
 	public void onClickPlayAgain(){
 		source.Play ();
+		Time.timeScale = 1;
 		Application.LoadLevel(1);
 		//WaitToLoadLevelOne ();//TODO: change when we have levels
 	}

@@ -46,7 +46,8 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void OnStartPress() {
-		PlayMainMenuSound ();
+		PlayMainMenuSound ();		
+		Time.timeScale = 1;
 		Application.LoadLevel(1);
 		//StartCoroutine("WaitToLoadLevel");
 	}
