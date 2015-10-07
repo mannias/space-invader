@@ -16,6 +16,7 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	public AudioClip winningSound;
 	public AudioClip collision;
 	private AudioSource source;	
+	private bool gameOver = false;
 
 	void Awake(){
 		source = this.GetComponent<AudioSource> ();
@@ -42,12 +43,12 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 	}
 
 	public void Pause(){
-		if (Time.timeScale==1) {
-			Time.timeScale = 0;
-			uiController.PauseMenu(true);
-		} else {
+		if (Time.timeScale == 0 && !gameOver) {
 			Time.timeScale =1;
 			uiController.PauseMenu(false);
+		} else {
+			Time.timeScale = 0;
+			uiController.PauseMenu(true);
 		}
 	}
 
@@ -79,6 +80,7 @@ public class GameController : MonoBehaviorSingleton<GameController> {
 		source.PlayOneShot (gameOverSound);
 		uiController.GameOver ();
 		Time.timeScale = 0;
+		gameOver = true;
 	}
 
 }
